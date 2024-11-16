@@ -1,81 +1,83 @@
-Beer Rating Prediction
-This repository contains a machine learning pipeline for predicting the overall rating of beers based on textual reviews, beer attributes, and user-related information. The project demonstrates advanced feature engineering techniques, text processing using TF-IDF, and model training with Random Forest Regressors.
+# **Beer Rating Prediction**  
+*Predicting beer ratings based on reviews, attributes, and user information.*
 
-Table of Contents
-Problem Statement
-Dataset
-Approach
-Feature Engineering
-Model Training
-Results
-How to Use
-Future Improvements
-Problem Statement
-Given a dataset containing beer reviews, beer attributes, and user-related features, the goal is to predict the overall rating of the beer (review/overall) using machine learning techniques. The problem is treated as a regression task, with the target variable ranging from 1.0 to 5.0.
+---
 
-Dataset
-The dataset consists of the following columns:
+## **Table of Contents**  
+1. [**Problem Statement**](#problem-statement)  
+2. [**Dataset**](#dataset)  
+3. [**Approach**](#approach)  
+4. [**Feature Engineering**](#feature-engineering)  
+5. [**Model Training**](#model-training)  
+6. [**Results**](#results)  
+7. [**How to Use**](#how-to-use)  
+8. [**Future Improvements**](#future-improvements)  
 
-Textual Data: review/text
-Categorical Data: beer/name, beer/style, user/gender
-Numeric Data: beer/ABV, review/appearance, review/aroma, review/palate, review/taste, user/ageInSeconds, review/timeUnix
-Approach
-Data Cleaning:
+---
 
-Handled missing values for textual, numeric, and categorical data.
-Normalized timestamps (review/timeUnix) to align with other numeric features.
-Feature Engineering:
+## **Problem Statement**  
+**Goal**: Predict the **overall beer rating (`review/overall`)** from a dataset of beer reviews and attributes using machine learning techniques. The task is treated as a **regression problem**.
 
-Textual features (review/text) processed using TF-IDF Vectorization.
-Categorical features (beer/name, beer/style, user/gender) encoded using One-Hot Encoding.
-Numeric features (beer/ABV, review/appearance, etc.) standardized to ensure uniform scaling.
-Model Training:
+---
 
-Used Random Forest Regressor for prediction.
-Evaluated model performance using Mean Squared Error (MSE) and R² Score.
-Feature Engineering
-TF-IDF Vectorization: Extracted text features from review/text with 100 important terms.
-One-Hot Encoding:
-Encoded high-cardinality categorical features (beer/name, beer/style) to avoid introducing ordinal relationships.
-Standardization:
-Scaled numeric features to standardize their ranges, improving model convergence.
-Model Training
-Algorithm: Random Forest Regressor
-Train-Test Split: 80-20 split for training and testing.
-Hyperparameters:
-Number of Trees (n_estimators): 50
-Random State: 42
-Results
-Mean Squared Error (MSE): Calculated during testing
-R² Score: Calculated during testing
-Feature importance analysis highlighted key contributors to the model's predictive power, including beer/ABV, review/aroma, and certain terms from review/text.
+## **Dataset**  
+The dataset includes:  
 
-How to Use
-Prerequisites
-Python 3.7+
-Required Libraries: numpy, pandas, scikit-learn, matplotlib
-Steps
-Clone this repository:
+- **Textual Data**: `review/text`  
+- **Categorical Data**: `beer/name`, `beer/style`, `user/gender`  
+- **Numeric Data**: `beer/ABV`, `review/appearance`, `review/aroma`, `review/palate`, `review/taste`, `user/ageInSeconds`, `review/timeUnix`  
 
-bash
-Copy code
-git clone https://github.com/yourusername/beer-rating-prediction.git
-cd beer-rating-prediction
-Install dependencies:
+---
 
-bash
-Copy code
-pip install -r requirements.txt
-Run the script:
+## **Approach**  
 
-bash
-Copy code
-python main.py
-Future Improvements
-Experiment with advanced models like XGBoost or LightGBM for better performance.
-Explore Word2Vec embeddings for richer text representation.
-Perform hyperparameter tuning to optimize model performance.
-Implement frequency encoding for high-cardinality features as an alternative to One-Hot Encoding.
-Enhance EDA with deeper analysis of user behavior and beer preferences.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+### **1. Data Cleaning**  
+- Handled missing values for textual, numeric, and categorical features.  
+- Normalized timestamps (`review/timeUnix`) to align them with other numeric features.  
+
+### **2. Feature Engineering**  
+- **Text Features**: Processed `review/text` using **TF-IDF Vectorization**.  
+- **Categorical Features**:  
+  - Encoded `beer/name`, `beer/style`, and `user/gender` using **One-Hot Encoding**.  
+- **Numeric Features**: Standardized features like `beer/ABV`, `review/appearance`, etc., to ensure uniform scaling.  
+
+### **3. Model Training**  
+- Used **Random Forest Regressor** for prediction.  
+- Evaluated using **Mean Squared Error (MSE)** and **R² Score**.
+
+---
+
+## **Feature Engineering**  
+
+### **Text Processing**  
+- **TF-IDF Vectorization**: Extracted the 100 most important terms from `review/text` to generate numeric features.  
+
+### **Categorical Encoding**  
+- **One-Hot Encoding**: Applied to high-cardinality categorical features (`beer/name`, `beer/style`).  
+
+### **Numeric Features**  
+- **Standardization**: Used to normalize `beer/ABV`, `review/appearance`, etc.  
+- **Normalized Timestamps**: Converted `review/timeUnix` into a numeric feature for temporal analysis.  
+
+---
+
+## **Model Training**  
+
+- **Algorithm**: Random Forest Regressor  
+- **Train-Test Split**: 80-20 split for training and testing.  
+- **Hyperparameters**:  
+  - **Number of Trees (`n_estimators`)**: 50  
+  - **Random State**: 42  
+
+---
+
+## **Results**  
+
+- **Mean Squared Error (MSE)**: *Calculated during testing.*  
+- **R² Score**: *Calculated during testing.*  
+
+### **Feature Importance**  
+- Top contributors include:  
+  - **`beer/ABV`**  
+  - **`review/aroma`**  
+  - Key terms from **`review/text`**.  
